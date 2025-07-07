@@ -1,0 +1,55 @@
+body {
+  font-family: Tenorite, "sans-serif";
+}
+
+h2 {
+  font-size: 2em;
+  margin-top: 5%;
+  color: #6530ee;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.card-layout {
+  width: 500px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 25px;
+}
+
+.listing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.save-icon{
+  cursor: pointer;
+}
+
+.error-container{
+  display: flex;
+  justify-content: center;
+}
+
+.error-container p{
+  color: red;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.crossover{
+  text-decoration: line-through;
+}
