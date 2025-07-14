@@ -3,58 +3,107 @@
 <div class="content">
   <!-- Begin here -->
   <mat-card appearance="outlined" class="card-layout">
-    <mat-card-header>
-      <mat-card-title>Todo List App</mat-card-title>
-    </mat-card-header>
+    <mat-card-header> </mat-card-header>
     <mat-card-content>
       @if (selectedIndex >= 0) {
       <div class="error-container">
-        <p>You are in Editing Mode... You can not perform any actions on the existing list</p>
+        <p>
+          You are in Editing Mode... You can not perform any actions on the
+          existing list
+        </p>
       </div>
       }
-      <div>
+
+      <div class="form-container">
         <mat-form-field appearance="outline">
           <mat-label>Task</mat-label>
-          <input
-            matInput
-            placeholder="Enter a new task"
-            [(ngModel)]="description"
-          />
-          @if (selectedIndex >= 0) {
-          <mat-icon matSuffix (click)="updateItem()">save_as</mat-icon>
-          }@else {
-          <mat-icon matSuffix (click)="save()" class="save-icon">save</mat-icon>
-          }
+
+          <div class="inputWbtn">
+            <input
+              matInput
+              placeholder="Enter a new task"
+              [(ngModel)]="description"
+              (keyup.enter)="save()"
+            />
+            <!-- <div class="mngS-container">
+              <button matFab class="mngS-icon">
+                <mat-icon>search</mat-icon>
+              </button>
+            </div> -->
+
+            @if (selectedIndex >= 0) {
+            <mat-icon
+              matSuffix
+              (click)="updateItem()"
+              (keyup.enter)="updateItem()"
+              >save_as</mat-icon
+            >
+            }@else {
+
+            <div class="saveBtn-container">
+              <button matFab extended (click)="save()">
+                <p class="saveTxt">New Task</p>
+                <mat-icon matSuffix class="save-icon">add_circle</mat-icon>
+              </button>
+            </div>
+
+            }
+          </div>
         </mat-form-field>
       </div>
 
-      @for (item of todoList(); track item.id; let i =$index) {
-      <div class="listing">
-        <div>
-          <mat-checkbox
-            (click)="checkmarkChanged(i)"
-            [disabled]="selectedIndex >= 0"
-          >
-            <span [ngClass]="item.done ? 'crossover' : '' "
-              >{{ item.description }}</span
+      <ng-template #todoListTemplate>
+        @for (item of filteredList(); track item.id; let i =$index) {
+        <div class="listing">
+          <div class>
+            <mat-radio-button
+              (click)="checkmarkChanged(i)"
+              [disabled]="selectedIndex >= 0"
             >
-          </mat-checkbox>
+              <span [ngClass]="item.done ? 'crossover' : '' "
+                >{{ item.description }}</span
+              >
+            </mat-radio-button>
+          </div>
+
+          @if (selectedIndex < 0) {
+          <div class="editDel">
+            @if(!item.done) {
+            <mat-icon matSuffix (click)="editItem(i, item)">edit</mat-icon
+            >&nbsp; }
+            <mat-icon matSuffix (click)="deleteConfirmation(i)"
+              >delete</mat-icon
+            >
+          </div>
+          }
         </div>
 
-        @if (selectedIndex < 0) {
-        <div>
-          @if(!item.done) {
-          <mat-icon matSuffix (click)="editItem(i, item)">edit</mat-icon>&nbsp;
-          }
-          <mat-icon matSuffix (click)="deleteConfirmation(i)">delete</mat-icon>
+        }@empty {
+        <div class="error-container">
+          <p>No tasks added</p>
         </div>
         }
-      </div>
-      }@empty {
-      <div class="error-container">
-        <p>No tasks added</p>
-      </div>
-      }
+      </ng-template>
+
+      <mat-tab-group
+        mat-stretch-tabs="false"
+        mat-align-tabs="center"
+        [(selectedIndex)]="currentIndex"
+      >
+        @for (item of filters; track $index) {
+        <mat-tab [label]="item">
+          <ng-container *ngTemplateOutlet="todoListTemplate"></ng-container>
+        </mat-tab>
+
+        }
+      </mat-tab-group>
     </mat-card-content>
+
+    <div class="clearbtn-container">
+      <button matFab extended (click)="clearAll()">
+        <mat-icon>delete</mat-icon>
+        Clear Tasks
+      </button>
+    </div>
   </mat-card>
 </div>

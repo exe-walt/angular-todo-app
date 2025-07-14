@@ -5,51 +5,141 @@ body {
 h2 {
   font-size: 2em;
   margin-top: 5%;
-  color: #6530ee;
+  color: #0921ff;
   text-align: center;
 }
 
 .content {
   display: flex;
   justify-content: center;
-  padding-top: 30px;
 }
 
 .card-layout {
-  width: 500px;
+  width: 90%;
+  border: none;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.inputWbtn {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 20px;
+}
+
+.inputWbtn input:focus{
+  outline: none;
 }
 
 mat-form-field {
   width: 100%;
+  /* padding: 10px; */
 }
 
 mat-card-header {
   display: flex;
   justify-content: center;
-  padding-bottom: 25px;
+  padding-bottom: 15px;
 }
 
 .listing {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: none;
+  border-radius: 20px;
+  height: 65px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  padding-left: 15px;
 }
 
-.save-icon{
+.editDel {
+  padding: 20px;
+}
+
+.editDel:hover{
   cursor: pointer;
 }
 
-.error-container{
+.saveBtn-container button {
+  display: flex;
+  align-items: center;
+  background-color: #0921ff;
+  margin-right: 20px;
+  width: 130px;
+}
+
+.saveBtn-container button:hover{
+  background: #0218d6;
+}
+
+.saveTxt {
+  color: white;
+  font-weight: bolder;
+}
+
+.save-icon {
+  cursor: pointer;
+  color: white;
+}
+
+.mngS-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* debugging */
+/* .mngS-container mat-icon {
+  border: 2px dashed red;
+  display: flex;
+} */
+/* end */
+
+.mngS-icon {
+  background-color: #0921ff;
+  color: white;
+  cursor: pointer;
+  width: 60px;
+  height: 50px;
+}
+
+.mngS-icon:hover {
+  background-color: #0218d6;
+}
+
+.error-container {
   display: flex;
   justify-content: center;
 }
 
-.error-container p{
+.error-container p {
   color: red;
   font-size: 1em;
   font-weight: bold;
 }
 
-.crossover{
+.crossover {
   text-decoration: line-through;
+}
+
+.clearbtn-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.clearbtn-container button {
+  background-color: red;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-weight: bolder;
 }
